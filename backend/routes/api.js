@@ -10,6 +10,8 @@ const BrandController = require("../controllers/BrandController");
 const ResultController = require("../controllers/ResultController");
 const blogController = require("../controllers/BlogController");
 const TestimonialController = require("../controllers/TestimonialController");
+const PageContentController = require("../controllers/PageContentController");
+
 
 // Admin
 const { adminProtect } = require("../middlewares/authAdminMiddleware");
@@ -63,6 +65,10 @@ const upload = multer({ storage }).fields([
     name: "userImage",
     maxCount: 1,
   },
+  {
+    name: "heroImage",
+    maxCount: 1,
+  }
 ]);
 
 // Serve images from the 'uploads' folder as static files
@@ -147,5 +153,14 @@ router.get("/blog/slug/:slug", blogController.getBlogBySlug);
 router.get("/blog/:id", blogController.getBlogById);
 router.patch("/blog/:id", upload, adminProtect, blogController.updateBlog);
 router.delete("/blog/:id", adminProtect, blogController.deleteBlog);
+
+// Page Content Routes
+
+router.get("/pagecontent", PageContentController.getPageContent);
+router.put("/pagecontent", upload, PageContentController.updatePageContent);
+router.delete("/pagecontent/:id", PageContentController.deletePageContent);
+
+
+
 
 module.exports = router;
