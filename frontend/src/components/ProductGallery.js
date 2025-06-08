@@ -9,7 +9,7 @@ import ImageComponent from "@/components/ImageComponent";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { BsArrowsFullscreen } from "react-icons/bs";
 
-const ProductGallery = ({ images, discount, zoom = true }) => {
+const ProductGallery = ({ images, zoom = true }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const thumbnailRefs = useRef([]);
@@ -123,7 +123,7 @@ const ProductGallery = ({ images, discount, zoom = true }) => {
           </button>
 
           <div className="p-2 flex items-center justify-center-safe gap-4 overflow-x-auto w-full md:w-[calc(40rem)] scrollbar-hide">
-            <div className="flex gap-4">
+            <div className="flex gap-4 overflow-hidden scrollbar-hide">
               {imageUrls.map((imgUrl, index) => (
                 <div
                   key={index}
