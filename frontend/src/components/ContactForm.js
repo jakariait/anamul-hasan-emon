@@ -140,7 +140,7 @@ export default function ContactForm() {
 					<button
 						type="submit"
 						disabled={loading}
-						className={`w-full py-2.5 px-4 rounded-md text-white font-medium transition duration-300 transform hover:scale-[1.02] ${
+						className={`w-full cursor-pointer py-2.5 px-4 rounded-md text-white font-medium transition duration-300 transform hover:scale-[1.02] ${
 							loading
 								? "bg-[#EF6C00]/70 cursor-not-allowed"
 								: "bg-[#EF6C00] hover:bg-[#d45f00] focus:outline-none focus:ring-2 focus:ring-[#EF6C00] focus:ring-offset-2 focus:ring-offset-[#1a1a1a]"

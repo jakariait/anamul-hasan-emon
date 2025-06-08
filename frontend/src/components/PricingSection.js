@@ -184,7 +184,7 @@ const PricingSection = () => {
         <div className="text-center mt-16">
           <h4 className="text-xl font-semibold mb-2">Need a Custom Offer?</h4>
           <p className="text-gray-400 mb-4">
-            Every business is different. Let's build a custom plan that fits
+            Every business is different. Let&apos;s build a custom plan that fits
             your exact goals.
           </p>
           <a
