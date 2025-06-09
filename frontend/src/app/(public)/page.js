@@ -10,12 +10,15 @@ import PricingPlans from "@/components/PricingSection";
 import WhatBusinessOwnersWant from "@/components/WhatBusinessOwnersWant";
 import CallToAction from "@/components/CallToAction";
 import Stats from "@/components/Stats";
+import { getStats } from "@/utils/getPageContentData";
 
-export default function Home() {
+const Page = async () => {
+  const stats = await getStats();
+
   return (
     <div>
       <Hero />
-      <Stats />
+      <Stats getStats={stats} />
       <Services />
       <Clients />
       <Testimonial />
@@ -28,4 +31,6 @@ export default function Home() {
       <CallToAction />
     </div>
   );
-}
+};
+
+export default Page;

@@ -1,95 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import {getWhatsApp} from "@/utils/brand";
-
-const plans = {
-  monthly: [
-    {
-      title: "Basic Plan",
-      price: "$300/month",
-      highlights: [
-        "Up to 3 Campaigns (Meta or Google)",
-        "Pixel & Conversion Setup",
-        "Monthly Strategy Call",
-        "Weekly Report",
-        "Audience Research & Setup",
-        "Creative Guidance",
-      ],
-    },
-    {
-      title: "Growth Plan",
-      price: "$500/month",
-      isHighlighted: true,
-      highlights: [
-        "Up to 6 Campaigns (Meta & Google)",
-        "Full Funnel Setup (TOFU–BOFU)",
-        "A/B Testing",
-        "Bi-weekly Strategy Calls",
-        "Advanced Analytics & Reporting",
-        "Retargeting & Lookalike Strategy",
-        "Creative Direction + Copywriting Support",
-      ],
-    },
-    {
-      title: "Scale Plan",
-      price: "$800/month",
-      highlights: [
-        "Up to 10 Ad Campaigns (Meta, Google, TikTok)",
-        "Conversion Funnel Strategy",
-        "Advanced Audience Layers & Split Testing",
-        "Dynamic Creative Strategy",
-        "Weekly Optimization & Scaling",
-        "Unlimited Messaging Support (via email/Slack)",
-        "4x Monthly Strategy Calls",
-        "Comprehensive Monthly Report with Insights",
-      ],
-    },
-  ],
-  project: [
-    {
-      title: "Starter",
-      price: "$200",
-      highlights: [
-        "2 Meta Ads (FB + IG)",
-        "Audience Research",
-        "Pixel Setup",
-        "Copywriting + Creatives",
-        "Campaign Setup",
-        "⏱️ 3-day Delivery",
-        "10 Day Management",
-      ],
-    },
-    {
-      title: "Standard",
-      price: "$300",
-      highlights: [
-        "4 Meta Ads (FB + IG)",
-        "Retargeting + Pixel Setup",
-        "Advanced Audience Segmentation",
-        "Creatives + Copy",
-        "Optimization Support",
-        "⏱️ 5-day Delivery",
-        "15 Day Management",
-      ],
-    },
-    {
-      title: "Premium",
-      price: "$500",
-      isHighlighted: true,
-      highlights: [
-        "8 Meta Ads (FB + IG)",
-        "Full Funnel Strategy (TOFU–BOFU)",
-        "A/B Testing",
-        "Retargeting + Custom Audiences",
-        "1x Zoom Strategy Call",
-        "Deep Analytics & Reporting",
-        "⏱️ 10-day Delivery",
-        "30 Day Management",
-      ],
-    },
-  ],
-};
+import React, { useEffect, useState } from "react";
+import { getWhatsApp } from "@/utils/brand";
+import { getPlans } from "@/utils/getPageContentData"; // Adjust path to where getPlans is defined
 
 const PricingCard = ({
   title,
@@ -99,7 +12,6 @@ const PricingCard = ({
   emoji,
 }) => (
   <section
-    id={"pricing"}
     className={`scroll-mt-96 flex flex-col justify-between p-6 rounded-xl border shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer ${
       isHighlighted
         ? "bg-blue-950 border-blue-600 text-white"
@@ -120,11 +32,7 @@ const PricingCard = ({
           </li>
         ))}
       </ul>
-      <a
-        href={getWhatsApp()}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={getWhatsApp()} target="_blank" rel="noopener noreferrer">
         <button className="px-6 py-1 bg-[#EF6C00] text-white font-semibold rounded-md transition cursor-pointer">
           Contact Me
         </button>
@@ -135,11 +43,36 @@ const PricingCard = ({
 
 const PricingSection = () => {
   const [activePlanType, setActivePlanType] = useState("monthly");
+  const [plans, setPlans] = useState({ monthly: [], project: [] });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPlans() {
+      try {
+        const data = await getPlans();
+        setPlans(data);
+      } catch (error) {
+        console.error("Failed to fetch plans:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPlans();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="bg-gray-900 text-gray-100 p-8 text-center">
+        Loading pricing plans...
+      </section>
+    );
+  }
 
   return (
     <section className="bg-gray-900 text-gray-100 p-4">
       <div className="xl:container xl:mx-auto flex flex-col items-center justify-center">
-        <div className=" mx-auto text-center mb-12">
+        <div className="mx-auto text-center mb-12">
           <h2 className="text-xl md:text-2xl font-bold mb-4 text-[#EF6C00]">
             Pricing Plans:
           </h2>
@@ -151,31 +84,24 @@ const PricingSection = () => {
 
         {/* Plan Type Switcher */}
         <div className="flex justify-center gap-4 mb-10">
-          <button
-            className={`px-5 py-2 rounded-full cursor-pointer text-sm font-medium transition ${
-              activePlanType === "monthly"
-                ? "bg-[#EF6C00] text-white"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
-            onClick={() => setActivePlanType("monthly")}
-          >
-            Monthly Retainer
-          </button>
-          <button
-            className={`px-5 py-2 rounded-full cursor-pointer text-sm font-medium transition ${
-              activePlanType === "project"
-                ? "bg-[#EF6C00] text-white"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
-            onClick={() => setActivePlanType("project")}
-          >
-            Project-Based
-          </button>
+          {["monthly", "project"].map((type) => (
+            <button
+              key={type}
+              className={`px-5 py-2 rounded-full cursor-pointer text-sm font-medium transition ${
+                activePlanType === type
+                  ? "bg-[#EF6C00] text-white"
+                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
+              onClick={() => setActivePlanType(type)}
+            >
+              {type === "monthly" ? "Monthly Retainer" : "Project-Based"}
+            </button>
+          ))}
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid gap-6 w-full md:grid-cols-3 ">
-          {plans[activePlanType].map((plan) => (
+        <div className="grid gap-6 w-full md:grid-cols-3">
+          {plans[activePlanType]?.map((plan) => (
             <PricingCard key={plan.title} {...plan} />
           ))}
         </div>
@@ -184,8 +110,8 @@ const PricingSection = () => {
         <div className="text-center mt-16">
           <h4 className="text-xl font-semibold mb-2">Need a Custom Offer?</h4>
           <p className="text-gray-400 mb-4">
-            Every business is different. Let&apos;s build a custom plan that fits
-            your exact goals.
+            Every business is different. Let&apos;s build a custom plan that
+            fits your exact goals.
           </p>
           <a
             href={getWhatsApp()}

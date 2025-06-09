@@ -39,6 +39,33 @@ const DataSchema = mongoose.Schema(
         whatIDeliver: { type: String, required: true },
       },
     ],
+
+    workingProcess: [
+      {
+        title: { type: String, required: true },
+        description: { type: String, required: true },
+      },
+    ],
+
+    plans: {
+      monthly: [
+        {
+          title: String,
+          price: String,
+          isHighlighted: Boolean,
+          highlights: [String],
+        },
+      ],
+      project: [
+        {
+          title: String,
+          price: String,
+          isHighlighted: Boolean,
+          highlights: [String],
+        },
+      ],
+    },
+
   },
   {
     timestamps: true,

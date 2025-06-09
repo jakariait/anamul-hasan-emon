@@ -157,7 +157,7 @@ router.delete("/blog/:id", adminProtect, blogController.deleteBlog);
 // Page Content Routes
 
 router.get("/pagecontent", PageContentController.getPageContent);
-router.put("/pagecontent", upload, PageContentController.updatePageContent);
+router.put("/pagecontent", upload, adminProtect, PageContentController.updatePageContent);
 router.delete("/pagecontent/:id", PageContentController.deletePageContent);
 
 

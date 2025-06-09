@@ -1,8 +1,6 @@
 export const getBrandName = () => "Grow With Emon";
 
-export const getName = () => "Anamul Hasan Emon";
-export const getTitle = () => "Media Buyer & Strategy Specialist ";
-export const getHeroImage = () => "/Emon GiG (JPG).jpg";
+
 export const getBrandLogo = () => "/brand-logo.png";
 
 export const getHomePageTitle = () => "Anamul Hasan Emon";

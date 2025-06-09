@@ -1,40 +1,10 @@
 import React from "react";
 import { FaArrowRight, FaArrowDown } from "react-icons/fa";
+import { getWorkingProcess } from "@/utils/getPageContentData";
 
-const steps = [
-  {
-    title: "Discovery & Business Understanding",
-    description:
-      "We begin by understanding your business, audience, and goals. We ensure that the strategy is aligned with your unique needs.",
-  },
-  {
-    title: "Market & Competitor Research",
-    description:
-      "We dive deep into your industry, analyze your competitors, and use this data to craft a smart, data-driven performance plan.",
-  },
-  {
-    title: "Creative & Copy Strategy",
-    description:
-      "I design scroll-stopping creatives and write persuasive ad copy that connects emotionally and converts.",
-  },
-  {
-    title: "Campaign Setup & Launch",
-    description:
-      "From pixel setup to campaign structure, everything is optimized from Day 1 for success.",
-  },
-  {
-    title: "Daily Optimization & A/B Testing",
-    description:
-      "I track campaign performance, test different ad sets, and continuously optimize for better results.",
-  },
-  {
-    title: "Reporting & Communication",
-    description:
-      "You’ll receive clear reports and ongoing support, ensuring that you’re always in the loop.",
-  },
-];
+const WorkingProcessSection = async () => {
+  const steps = await getWorkingProcess();
 
-const WorkingProcessSection = () => {
   return (
     <section className="bg-black pt-12 px-4 pb-16 text-white relative">
       <div className="xl:container xl:mx-auto max-w-6xl mx-auto text-center">

@@ -1,11 +1,15 @@
 import { FaLinkedin, FaFacebookF, FaYoutube, FaTiktok } from "react-icons/fa";
+import { getSocialLinks } from "@/utils/getPageContentData";
 
-const SocialLinks = () => {
+const SocialLinks = async () => {
+  const socialLinks = await getSocialLinks();
+
+
   return (
     <div className="flex space-x-4 text-2xl px-4 items-center justify-center">
       {/* LinkedIn Icon */}
       <a
-        href="https://www.linkedin.com/in/elevatewithrifat/"
+        href={socialLinks.linkedin}
         target="_blank"
         rel="noopener noreferrer"
         className="text-[#0A66C2]" // LinkedIn brand color
@@ -15,7 +19,7 @@ const SocialLinks = () => {
 
       {/* Facebook Icon */}
       <a
-        href="https://www.facebook.com/ElevatewithRifat/"
+        href={socialLinks.facebook}
         target="_blank"
         rel="noopener noreferrer"
         className="text-[#1877F2]" // Facebook brand color
@@ -25,7 +29,7 @@ const SocialLinks = () => {
 
       {/* YouTube Icon */}
       <a
-        href="https://www.youtube.com/@ElevatewithRifat"
+        href={socialLinks.youtube}
         target="_blank"
         rel="noopener noreferrer"
         className="text-[#FF0000]" // YouTube brand color
@@ -35,7 +39,7 @@ const SocialLinks = () => {
 
       {/* TikTok Icon */}
       <a
-        href="https://www.tiktok.com/@elevatewithrfat"
+        href={socialLinks.tiktok}
         target="_blank"
         rel="noopener noreferrer"
         className="text-red-100" // TikTok brand color

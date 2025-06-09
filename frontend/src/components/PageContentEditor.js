@@ -9,13 +9,15 @@ import {
   Wrench,
   Workflow,
   ExternalLink,
-  Upload,
-  X,
-  Image,
 } from "lucide-react";
 import HeroImageUpload from "@/components/HeroImageUpload";
+import WorkingProcessForm from "@/components/WorkingProcessForm";
+import useAuthAdminStore from "@/store/AuthAdminStore";
+import AdminPlansEditor from "@/components/AdminPlansEditor";
 
 const PageContentEditor = () => {
+  const { token } = useAuthAdminStore();
+
   const [data, setData] = useState({
     name: "",
     title: "",
@@ -43,7 +45,7 @@ const PageContentEditor = () => {
   const [activeTab, setActiveTab] = useState("basic");
 
   // API endpoint
-  const API_BASE = "http://localhost:5050/api/pagecontent";
+  const API_BASE = `${process.env.NEXT_PUBLIC_API_URL}/pagecontent`;
 
   useEffect(() => {
     fetchData();
@@ -80,6 +82,7 @@ const PageContentEditor = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // <-- Add token here
         },
         body: JSON.stringify(data),
       });
@@ -214,7 +217,7 @@ const PageContentEditor = () => {
           </label>
           <button
             onClick={() => addArrayItem("heroContent", "")}
-            className="flex items-center text-sm text-blue-600 hover:text-blue-800"
+            className="flex items-center text-sm text-blue-600 hover:text-blue-800 cursor-pointer"
           >
             <Plus className="w-4 h-4 mr-1" />
             Add Line
@@ -234,7 +237,7 @@ const PageContentEditor = () => {
             {data.heroContent.length > 1 && (
               <button
                 onClick={() => removeArrayItem("heroContent", index)}
-                className="text-red-600 hover:text-red-800"
+                className="text-red-600 hover:text-red-800 cursor-pointer"
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -302,7 +305,7 @@ const PageContentEditor = () => {
               iconName: "",
             })
           }
-          className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="flex cursor-pointer items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
         >
           <Plus className="w-4 h-4 mr-1" />
           Add Service
@@ -316,7 +319,7 @@ const PageContentEditor = () => {
             {data.services.length > 1 && (
               <button
                 onClick={() => removeArrayItem("services", index)}
-                className="text-red-600 hover:text-red-800"
+                className="text-red-600 cursor-pointer hover:text-red-800"
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -385,7 +388,7 @@ const PageContentEditor = () => {
           onClick={() =>
             addArrayItem("toolsIUse", { title: "", iconName: "", items: [""] })
           }
-          className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="flex items-center cursor-pointer px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
         >
           <Plus className="w-4 h-4 mr-1" />
           Add Tool Category
@@ -399,7 +402,7 @@ const PageContentEditor = () => {
             {data.toolsIUse.length > 1 && (
               <button
                 onClick={() => removeArrayItem("toolsIUse", index)}
-                className="text-red-600 hover:text-red-800"
+                className="text-red-600 cursor-pointer hover:text-red-800"
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -451,7 +454,7 @@ const PageContentEditor = () => {
                   newTools[index].items.push("");
                   updateField("toolsIUse", newTools);
                 }}
-                className="text-sm text-blue-600 hover:text-blue-800"
+                className="text-sm cursor-pointer text-blue-600 hover:text-blue-800"
               >
                 <Plus className="w-4 h-4 inline mr-1" />
                 Add Tool
@@ -480,7 +483,7 @@ const PageContentEditor = () => {
                       );
                       updateField("toolsIUse", newTools);
                     }}
-                    className="text-red-600 hover:text-red-800"
+                    className="text-red-600 cursor-pointer hover:text-red-800"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -505,21 +508,21 @@ const PageContentEditor = () => {
               whatIDeliver: "",
             })
           }
-          className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="flex items-center cursor-pointer px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
         >
           <Plus className="w-4 h-4 mr-1" />
-          Add Step
+          Add Content
         </button>
       </div>
 
       {data.howIwork.map((step, index) => (
         <div key={index} className="border border-gray-200 rounded-lg p-4">
           <div className="flex items-center justify-between mb-4">
-            <h4 className="font-medium">Step {index + 1}</h4>
+            <h4 className="font-medium">Content {index + 1}</h4>
             {data.howIwork.length > 1 && (
               <button
                 onClick={() => removeArrayItem("howIwork", index)}
-                className="text-red-600 hover:text-red-800"
+                className="text-red-600 cursor-pointer hover:text-red-800"
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -645,7 +648,7 @@ const PageContentEditor = () => {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`w-full flex items-center px-3 py-2 rounded-lg text-left transition-colors ${
+                      className={`w-full cursor-pointer flex items-center px-3 py-2 rounded-lg text-left transition-colors ${
                         activeTab === tab.id
                           ? "bg-blue-100 text-blue-700 font-medium"
                           : "text-gray-600 hover:bg-gray-100"
@@ -668,7 +671,7 @@ const PageContentEditor = () => {
                   <button
                     onClick={saveData}
                     disabled={loading}
-                    className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                    className="flex items-center cursor-pointer px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                   >
                     {loading ? (
                       <>
@@ -689,7 +692,8 @@ const PageContentEditor = () => {
         </div>
       </div>
       <HeroImageUpload />
-
+      <WorkingProcessForm/>
+      <AdminPlansEditor/>
     </div>
   );
 };

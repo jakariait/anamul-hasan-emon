@@ -1,13 +1,27 @@
-import axios from 'axios';
+import axios from "axios";
 
-const apiURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5050/api';
+const apiURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5050/api";
+
+// Simple in-memory cache
+let cachedData = null;
+let lastFetched = 0;
+const CACHE_TTL = 1000 * 60 * 5; // 5 minutes
 
 async function fetchPageContent() {
+  const now = Date.now();
+
+  // If cached and not expired
+  if (cachedData && now - lastFetched < CACHE_TTL) {
+    return cachedData;
+  }
+
   try {
     const response = await axios.get(`${apiURL}/pagecontent`);
-    return response.data;
+    cachedData = response.data;
+    lastFetched = now;
+    return cachedData;
   } catch (error) {
-    console.error('Failed to fetch page content:', error);
+    console.error("Failed to fetch page content:", error.message);
     throw error;
   }
 }
@@ -20,11 +34,6 @@ export async function getSocialLinks() {
 export async function getStats() {
   const data = await fetchPageContent();
   return data.stats;
-}
-
-export async function getId() {
-  const data = await fetchPageContent();
-  return data._id;
 }
 
 export async function getName() {
@@ -62,12 +71,12 @@ export async function getHowIWork() {
   return data.howIwork;
 }
 
-export async function getCreatedAt() {
+export async function getWorkingProcess() {
   const data = await fetchPageContent();
-  return data.createdAt;
+  return data.workingProcess;
 }
 
-export async function getUpdatedAt() {
+export async function getPlans() {
   const data = await fetchPageContent();
-  return data.updatedAt;
+  return data.plans;
 }

@@ -3,17 +3,18 @@
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
-export default function Stats() {
+export default function Stats(getStats) {
+
   const stats = [
-    { label: "Happy Clients", value: 50 },
-    { label: "Project Completed", value: 600 },
-    { label: "Years Experience", value: 3.5 },
-    { label: "Ad Spend", value: 4.3, suffix: "M" },
+    { label: "Happy Clients", value: getStats.getStats.happyClients },
+    { label: "Project Completed", value: getStats.getStats.projectCompleted },
+    { label: "Years Experience", value: getStats.getStats.yearsExperience },
+    { label: "Ad Spend", value: getStats.getStats.adSpend, suffix: "M" },
   ];
 
   const { ref, inView } = useInView({
     triggerOnce: true, // only trigger once
-    threshold: 0.3,     // percentage of component visible before triggering
+    threshold: 0.3, // percentage of component visible before triggering
   });
 
   return (

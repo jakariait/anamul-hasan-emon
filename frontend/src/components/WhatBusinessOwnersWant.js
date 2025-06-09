@@ -1,4 +1,5 @@
 import React from "react";
+import { getHowIWork } from "@/utils/getPageContentData";
 
 const ServiceCard = ({ title, whatTheyWant, whatIDeliver }) => {
   return (
@@ -18,57 +19,8 @@ const ServiceCard = ({ title, whatTheyWant, whatIDeliver }) => {
   );
 };
 
-const WhatBusinessOwnersWant = () => {
-  const services = [
-    {
-      title: "Clear ROI",
-      whatTheyWant: "Measurable results that impact the bottom line.",
-      whatIDeliver:
-        "Campaigns focused on conversions, not just clicks. Full-funnel strategy (TOFU–MOFU–BOFU) aligned with business goals. Real-time tracking of leads, sales, and ROI.",
-    },
-    {
-      title: "Time-Efficient Execution",
-      whatTheyWant: "Less stress, more done — fast.",
-      whatIDeliver:
-        "End-to-end campaign setup and management. Fast turnaround with clear timelines. No micro-managing needed — just results.",
-    },
-    {
-      title: "Transparent Reporting",
-      whatTheyWant: "Clarity, accountability, and insights.",
-      whatIDeliver:
-        "Easy-to-read performance reports. Weekly or monthly updates with key metrics. Actionable insights for ongoing improvements.",
-    },
-    {
-      title: "Scalable Growth Systems",
-      whatTheyWant: "Campaigns that grow with their business.",
-      whatIDeliver:
-        "Advanced audience segmentation and retargeting. High-converting landing pages and ad copy. Long-term strategies designed for profitable scaling.",
-    },
-    {
-      title: "Reliable Communication",
-      whatTheyWant: "A responsive, trustworthy partner.",
-      whatIDeliver:
-        "Regular check-ins via email, WhatsApp, or Zoom. Dedicated support at every stage. Fast response to questions or change requests.",
-    },
-    {
-      title: "Creative + Copy That Sells",
-      whatTheyWant: "Ads that stop the scroll *and* drive action.",
-      whatIDeliver:
-        "Eye-catching, platform-optimized visuals. Persuasive, conversion-driven ad copy. Consistent brand messaging across campaigns.",
-    },
-    {
-      title: "Continuous Optimization",
-      whatTheyWant: "Performance that improves over time.",
-      whatIDeliver:
-        "A/B testing for creatives, audiences, and placements. Weekly performance reviews and data-driven changes. A 'never set it and forget it' approach.",
-    },
-    {
-      title: "Stress-Free Workflow",
-      whatTheyWant: "A smooth, professional experience from start to finish.",
-      whatIDeliver:
-        "Proven processes. Clear communication. Reliable, high-performing marketing — without the chaos.",
-    },
-  ];
+const WhatBusinessOwnersWant = async () => {
+  const services = await getHowIWork();
 
   return (
     <section className="bg-black py-12 px-6 text-gray-100">

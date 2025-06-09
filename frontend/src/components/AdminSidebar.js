@@ -15,6 +15,8 @@ const AdminHeader = () => {
 
   const menuItems = [
     { name: "Dashboard", path: "/admin/dashboard" },
+    { name: "Content", path: "/admin/dashboard/content" },
+
     { name: "Blogs", path: "/admin/dashboard/blogs" },
     { name: "Brands", path: "/admin/dashboard/brands" },
     { name: "Results", path: "/admin/dashboard/results" },
@@ -63,7 +65,7 @@ const AdminHeader = () => {
         </div>
 
         {/* Desktop Menu */}
-        <nav className="hidden lg:flex items-center space-x-6">
+        <nav className="hidden lg:flex items-center space-x-2">
           {menuItems.map((item) => {
             const isActive = pathname === item.path;
             return (
