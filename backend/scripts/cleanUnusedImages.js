@@ -6,11 +6,11 @@ import fs from "fs";
 import path from "path";
 
 // Models
-import CarouselModel from "../models/CarouselModel.js";
-import FeatureImageModel from "../models/FeatureImageModel.js";
-import GeneralInfoModel from "../models/GeneralInfoModel.js";
-import ProductModel from "../models/ProductModel.js";
-import UserModel from "../models/UserModel.js";
+import BlogModel from "../models/BlogModel.js";
+import BrandModel from "../models/BrandModel.js";
+import PageContentModel from "../models/PageContentModel.js";
+import ResultModel from "../models/ResultModel.js";
+import TestimonialModel from "../models/TestimonialModel.js";
 
 // Setup __dirname for ES module
 const __filename = fileURLToPath(import.meta.url);
@@ -34,27 +34,25 @@ const addImage = (img) => {
 };
 
 const collectUsedImages = async () => {
-  const carousels = await CarouselModel.find({}, "imgSrc");
-  carousels.forEach((item) => addImage(item.imgSrc));
 
-  const features = await FeatureImageModel.find({}, "imgSrc");
-  features.forEach((item) => addImage(item.imgSrc));
+  const blogs = await BlogModel.find({}, "thumbnailImage");
+  blogs.forEach((item) => addImage(item.thumbnailImage));
 
-  const infos = await GeneralInfoModel.find({}, "PrimaryLogo SecondaryLogo Favicon");
-  infos.forEach((item) => {
-    addImage(item.PrimaryLogo);
-    addImage(item.SecondaryLogo);
-    addImage(item.Favicon);
+  const brands = await BrandModel.find({}, "imgSrc");
+  brands.forEach((item) => addImage(item.imgSrc));
+
+  const pagecontent = await PageContentModel.find({}, "heroImage");
+  pagecontent.forEach((item) => {
+    addImage(item.heroImage);
+
   });
 
-  const products = await ProductModel.find({}, "thumbnailImage images");
-  products.forEach((product) => {
-    addImage(product.thumbnailImage);
-    product.images?.forEach(addImage);
-  });
+  const results = await ResultModel.find({}, "imgSrc");
+  results.forEach((item) => addImage(item.imgSrc));
 
-  const users = await UserModel.find({}, "userImage");
-  users.forEach((user) => addImage(user.userImage));
+
+  const testimonial = await TestimonialModel.find({}, "imgSrc");
+  testimonial.forEach((user) => addImage(user.imgSrc));
 };
 
 await collectUsedImages();

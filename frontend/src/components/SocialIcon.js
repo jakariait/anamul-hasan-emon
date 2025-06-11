@@ -1,9 +1,8 @@
-import { FaLinkedin, FaFacebookF, FaYoutube, FaTiktok } from "react-icons/fa";
+import {FaLinkedin, FaFacebookF, FaYoutube, FaTiktok, FaInstagram} from "react-icons/fa";
 import { getSocialLinks } from "@/utils/getPageContentData";
 
 const SocialLinks = async () => {
   const socialLinks = await getSocialLinks();
-
 
   return (
     <div className="flex space-x-4 text-2xl px-4 items-center justify-center">
@@ -46,6 +45,16 @@ const SocialLinks = async () => {
       >
         <FaTiktok />
       </a>
+      {/* Instagram Icon */}
+      <a
+        href={socialLinks.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[#E4405F]" // Instagram brand color
+      >
+        <FaInstagram />
+      </a>
+
     </div>
   );
 };

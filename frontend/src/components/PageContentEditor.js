@@ -27,6 +27,7 @@ const PageContentEditor = () => {
       facebook: "",
       youtube: "",
       tiktok: "",
+      instagram: "",
     },
     stats: {
       happyClients: 0,

@@ -11,6 +11,7 @@ const DataSchema = mongoose.Schema(
       facebook: { type: String, required: true },
       youtube: { type: String, required: true },
       tiktok: { type: String, required: true },
+      instagram: { type: String, required: true },
     },
     stats: {
       happyClients: { type: Number, default: 0 },
