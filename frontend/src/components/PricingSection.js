@@ -11,7 +11,7 @@ const PricingCard = ({
   isHighlighted = false,
   emoji,
 }) => (
-  <section
+  <section id="pricing"
     className={`scroll-mt-96 flex flex-col justify-between p-6 rounded-xl border shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer ${
       isHighlighted
         ? "bg-blue-950 border-blue-600 text-white"

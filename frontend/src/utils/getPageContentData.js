@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5050/api";
+const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
 // Simple in-memory cache
 let cachedData = null;

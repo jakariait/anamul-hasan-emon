@@ -2,6 +2,25 @@ import React from "react";
 import { getHomePageTitle } from "@/utils/brand";
 import ImageComponent from "@/components/ImageComponent";
 
+export async function generateStaticParams() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  try {
+    const res = await fetch(`${apiUrl}/activeblog`, {
+      next: { revalidate: 60 }, // optional: enable ISR
+    });
+
+    const blogs = await res.json();
+
+    return blogs.data.map((blog) => ({
+      slug: blog.slug,
+    }));
+  } catch (error) {
+    console.error("Error fetching blog slugs:", error);
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const { slug } = params;

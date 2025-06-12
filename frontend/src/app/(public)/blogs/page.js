@@ -2,9 +2,10 @@ import ImageComponent from "@/components/ImageComponent";
 import Link from "next/link";
 import { getHomePageTitle } from "@/utils/brand";
 
-export async function generateMetadata({ searchParams }) {
-  const params = await searchParams;
-  const currentPage = parseInt(params?.page) || 1;
+
+
+export function generateMetadata({ searchParams }) {
+  const currentPage = parseInt(searchParams?.page || '1');
   const baseTitle = getHomePageTitle();
 
   return {
@@ -13,6 +14,7 @@ export async function generateMetadata({ searchParams }) {
     keywords: ["blogs", "latest blogs", "active blogs", baseTitle],
   };
 }
+
 
 
 export default async function BlogsPage({ searchParams }) {
