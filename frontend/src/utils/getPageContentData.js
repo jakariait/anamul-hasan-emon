@@ -4,7 +4,7 @@ const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
 async function fetchPageContent() {
   try {
-    const response = await axios.get(`${apiURL}/pagecontent?_t=${Date.now()}`); // cache-busting query param
+    const response = await axios.get(`${apiURL}/pagecontent`);
     return response.data;
   } catch (error) {
     console.error("Failed to fetch page content:", error.message);
