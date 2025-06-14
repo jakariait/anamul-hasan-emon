@@ -2,24 +2,10 @@ import axios from "axios";
 
 const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
-// Simple in-memory cache
-let cachedData = null;
-let lastFetched = 0;
-const CACHE_TTL = 1000 * 60 * 1; // 1 minutes
-
 async function fetchPageContent() {
-  const now = Date.now();
-
-  // If cached and not expired
-  if (cachedData && now - lastFetched < CACHE_TTL) {
-    return cachedData;
-  }
-
   try {
-    const response = await axios.get(`${apiURL}/pagecontent`);
-    cachedData = response.data;
-    lastFetched = now;
-    return cachedData;
+    const response = await axios.get(`${apiURL}/pagecontent?_t=${Date.now()}`); // cache-busting query param
+    return response.data;
   } catch (error) {
     console.error("Failed to fetch page content:", error.message);
     throw error;
