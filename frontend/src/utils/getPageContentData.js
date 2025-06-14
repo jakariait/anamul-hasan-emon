@@ -5,7 +5,7 @@ const apiURL = process.env.NEXT_PUBLIC_API_URL;
 // Simple in-memory cache
 let cachedData = null;
 let lastFetched = 0;
-const CACHE_TTL = 1000 * 60 * 5; // 5 minutes
+const CACHE_TTL = 1000 * 60 * 1; // 1 minutes
 
 async function fetchPageContent() {
   const now = Date.now();
