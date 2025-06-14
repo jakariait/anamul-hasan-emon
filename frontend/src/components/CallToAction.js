@@ -18,7 +18,7 @@ const CallToAction = () => {
 						</p>
 						<div className="flex flex-wrap justify-center md:justify-start gap-4">
 							<a
-								href="mailto:hello@elevatewithrfat.com"
+								href="mailto:hello@anamulemon.com"
 								className="bg-[#EF6C00] hover:bg-[#d45f00] text-white font-bold py-3 px-8 rounded-md transition duration-300 transform hover:scale-105"
 							>
 								💼 Hire Me
@@ -32,7 +32,7 @@ const CallToAction = () => {
 								📞 Schedule a Call
 							</a>
 							<a
-								href="mailto:hello@elevatewithrfat.com"
+								href="mailto:hello@anamulemon.com"
 								className="bg-[#EF6C00] hover:bg-[#d45f00] text-white font-bold py-3 px-8 rounded-md transition duration-300 transform hover:scale-105"
 							>
 								🧾 Request Proposal
