@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'standalone', // essential for cPanel Node hosting
   images: {
-    domains: ['localhost', 'your-production-domain.com'], // add your actual domains here
+    domains: ['localhost', 'anamulemon.com', 'jakaria.amazonfbasetup.com'], // add your actual domains here
   },
 };
 
