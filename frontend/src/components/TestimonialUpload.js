@@ -109,6 +109,8 @@ const BrandUpload = () => {
                 <ImageComponent
                   imageName={image.imgSrc}
                   className="object-cover rounded-lg"
+                  height={200}
+                  width={200}
                 />
                 <button
                   onClick={() => handleImageDelete(image._id)}

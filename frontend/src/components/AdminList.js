@@ -1,6 +1,6 @@
 "use client"; // If using App Router
 
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {
   Table,
   TableBody,
@@ -51,11 +51,8 @@ const AdminList = () => {
   const [editFormErrors, setEditFormErrors] = useState({});
   const [editLoading, setEditLoading] = useState(false);
 
-  useEffect(() => {
-    fetchAdmins();
-  }, []);
-
-  const fetchAdmins = async () => {
+// ✅ Define fetchAdmins before useEffect and wrap in useCallback
+  const fetchAdmins = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${apiUrl}/admin/getall`, {
@@ -65,12 +62,16 @@ const AdminList = () => {
       });
       setAdmins(response.data.admins);
     } catch (error) {
-      console.error("Failed to fetch admins:", error); // It's good practice to log the actual error
+      console.error("Failed to fetch admins:", error);
       showSnackbar("error", "Failed to fetch admins");
     } finally {
       setLoading(false);
     }
-  };
+  }, [apiUrl, token]); // ✅ Include dependencies
+
+  useEffect(() => {
+    fetchAdmins();
+  }, [fetchAdmins]); // ✅ Safe to use here
 
   const handleDeleteClick = (adminId) => {
     setSelectedAdminId(adminId);

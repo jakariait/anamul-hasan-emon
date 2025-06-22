@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 const FaqAccordion = () => {
   const [faqs, setFaqs] = useState([]);
@@ -8,17 +8,19 @@ const FaqAccordion = () => {
 
   const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
-  useEffect(() => {
-    fetch(`${apiURL}/faq`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.data) {
-          setFaqs(data.data);
-        }
-      })
-      .catch((err) => console.error("FAQ fetch error:", err));
-  }, []);
+  const fetchFAQs = useCallback(async () => {
+    try {
+      const res = await fetch(`${apiURL}/faq`);
+      const data = await res.json();
+      if (data?.data) setFaqs(data.data);
+    } catch (err) {
+      console.error("FAQ fetch error:", err);
+    }
+  }, [apiURL]);
 
+  useEffect(() => {
+    fetchFAQs();
+  }, [fetchFAQs]);
   const toggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };

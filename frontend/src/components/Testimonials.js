@@ -5,11 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import ImageComponent from "@/components/ImageComponent";
+const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
 
-  const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     fetch(`${apiURL}/getalltestimonial`)
@@ -45,6 +45,8 @@ const Testimonials = () => {
                   <ImageComponent
                     imageName={item.imgSrc}
                     alt={`Client ${index + 1}`}
+                    height={400}
+                    width={400}
                   />
                 </div>
               </SwiperSlide>

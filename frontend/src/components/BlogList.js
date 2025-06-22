@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import {
   Table,
@@ -43,38 +43,38 @@ const BlogList = () => {
     severity: "success",
   });
 
-  const token = useAuthAdminStore()
+  const token = useAuthAdminStore();
   const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
-  const fetchBlogs = async (page = 1) => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        `${apiURL}/blog?page=${page}`,
-        {
+  const fetchBlogs = useCallback(
+    async (page = 1) => {
+      try {
+        setLoading(true);
+        const res = await axios.get(`${apiURL}/blog?page=${page}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
-      );
-      setBlogs(res.data.data);
-      setCurrentPage(res.data.currentPage);
-      setTotalPages(res.data.totalPages);
-    } catch (error) {
-      console.error("Failed to fetch blogs", error);
-      setSnackbar({
-        open: true,
-        message: "Failed to fetch blogs.",
-        severity: "error",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+        });
+        setBlogs(res.data.data);
+        setCurrentPage(res.data.currentPage);
+        setTotalPages(res.data.totalPages);
+      } catch (error) {
+        console.error("Failed to fetch blogs", error);
+        setSnackbar({
+          open: true,
+          message: "Failed to fetch blogs.",
+          severity: "error",
+        });
+      } finally {
+        setLoading(false);
+      }
+    },
+    [apiURL, token],
+  );
 
   useEffect(() => {
     fetchBlogs(currentPage);
-  }, [currentPage]);
+  }, [fetchBlogs, currentPage]);
 
   const handleEdit = (id) => {
     router.push(`/admin/dashboard/blogs/${id}`);
@@ -116,13 +116,14 @@ const BlogList = () => {
 
   return (
     <div className="shadow rounded-lg p-10">
-      <Link href="/admin/dashboard/blogs/create" className={"flex justify-center"}>
+      <Link
+        href="/admin/dashboard/blogs/create"
+        className={"flex justify-center"}
+      >
         <Button variant={"outlined"}>Create A Blog</Button>
       </Link>
 
-      <h1 className="border-l-4  mb-6 pl-2 text-lg font-semibold">
-        Blog List
-      </h1>
+      <h1 className="border-l-4  mb-6 pl-2 text-lg font-semibold">Blog List</h1>
       {loading ? (
         <div className="flex justify-center">
           <CircularProgress />

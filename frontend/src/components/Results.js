@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import ProductGallery from "@/components/ProductGallery";
+const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
 const Results = () => {
-  const apiURL = process.env.NEXT_PUBLIC_API_URL;
   const [images, setImages] = useState([]);
 
   useEffect(() => {

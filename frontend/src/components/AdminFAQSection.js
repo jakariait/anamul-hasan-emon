@@ -1,5 +1,5 @@
-"use client"
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -52,7 +52,7 @@ const AdminFAQSection = () => {
     setSnackbar((prev) => ({ ...prev, open: false }));
   };
 
-  const fetchFAQs = async () => {
+  const fetchFAQs = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get(`${apiUrl}/faq`);
@@ -63,11 +63,11 @@ const AdminFAQSection = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [apiUrl]); // ✅ dependency array
 
   useEffect(() => {
     fetchFAQs();
-  }, [apiUrl]);
+  }, [fetchFAQs]);
 
   const handleOpen = (faq = null) => {
     if (faq) {

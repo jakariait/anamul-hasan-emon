@@ -93,6 +93,8 @@ const ProductGallery = ({ images, zoom = true }) => {
                   alt="Main Image"
                   className="w-full h-auto object-cover cursor-pointer"
                   skeletonHeight={"400px"}
+                  height={600}
+                  width={600}
                 />
                 <button className="absolute md:bottom-4 bottom-1 left-1 p-3 md:left-3 bg-white rounded-full cursor-pointer">
                   <BsArrowsFullscreen />
@@ -140,6 +142,7 @@ const ProductGallery = ({ images, zoom = true }) => {
                     alt={`Thumbnail ${index}`}
                     className="w-full h-full object-cover"
                     skeletonHeight={"200px"}
+                    height={200}
                   />
                 </div>
               ))}

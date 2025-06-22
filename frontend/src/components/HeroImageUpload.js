@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { Upload } from "lucide-react";
@@ -16,28 +16,24 @@ const HeroImageUpload = () => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const { token } = useAuthAdminStore();
 
-  const fetchImages = async () => {
+  const fetchImages = useCallback(async () => {
     try {
-      const response = await axios.get(`${apiUrl}/pagecontent`);
-      if (response.data.heroImage) {
-        if (Array.isArray(response.data.heroImage)) {
-          setImages(response.data.heroImage);
-        } else {
-          setImages([
-            { _id: "single-image", heroImage: response.data.heroImage },
-          ]);
-        }
+      const res = await axios.get(`${apiUrl}/pagecontent`);
+      const heroImage = res.data.heroImage;
+
+      if (heroImage) {
+        setImages(Array.isArray(heroImage) ? heroImage : [{ _id: "single-image", heroImage }]);
       } else {
         setImages([]);
       }
-    } catch (error) {
-      console.error("Error fetching images", error);
+    } catch (err) {
+      console.error("Error fetching images", err);
     }
-  };
+  }, [apiUrl]);
 
   useEffect(() => {
     if (apiUrl) fetchImages();
-  }, [apiUrl]);
+  }, [apiUrl, fetchImages]);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -100,6 +96,8 @@ const HeroImageUpload = () => {
                 <ImageComponent
                   imageName={image.heroImage}
                   className="object-cover rounded-lg"
+                  height={200}
+                  width={200}
                 />
               </motion.div>
             ))

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { getBrandLogo, getBrandName } from "@/utils/brand";
 
@@ -24,10 +25,13 @@ const Navbar = () => {
       <div className="xl:container xl:mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <img
+          <Image
             src={getBrandLogo()}
             alt={getBrandName()}
-            className={"w-40 -mt-10 -mb-16"}
+            width={160}  // Adjust based on your design (w-40 = 10rem = 160px)
+            height={64}  // Estimate height or set according to your logo's aspect ratio
+            className="-mt-10 -mb-16"
+            priority // if you want this image to load eagerly
           />
         </Link>
 

@@ -15,6 +15,8 @@ import WorkingProcessForm from "@/components/WorkingProcessForm";
 import useAuthAdminStore from "@/store/AuthAdminStore";
 import AdminPlansEditor from "@/components/AdminPlansEditor";
 
+const API_BASE = `${process.env.NEXT_PUBLIC_API_URL}/pagecontent`;
+
 const PageContentEditor = () => {
   const { token } = useAuthAdminStore();
 
@@ -46,7 +48,6 @@ const PageContentEditor = () => {
   const [activeTab, setActiveTab] = useState("basic");
 
   // API endpoint
-  const API_BASE = `${process.env.NEXT_PUBLIC_API_URL}/pagecontent`;
 
   useEffect(() => {
     fetchData();
@@ -693,8 +694,8 @@ const PageContentEditor = () => {
         </div>
       </div>
       <HeroImageUpload />
-      <WorkingProcessForm/>
-      <AdminPlansEditor/>
+      <WorkingProcessForm />
+      <AdminPlansEditor />
     </div>
   );
 };

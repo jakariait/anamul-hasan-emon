@@ -64,6 +64,8 @@ export default async function BlogsPage({ searchParams }) {
                   <ImageComponent
                     imageName={blog.thumbnailImage}
                     className="rounded w-full aspect-video object-contain"
+                    height={200}
+                    width={200}
                   />
                 </Link>
               </div>

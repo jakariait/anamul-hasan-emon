@@ -60,7 +60,11 @@ const BlogDetailsPage = async ({ params }) => {
     <div className="xl:container mx-auto p-8 max-w-4xl">
       <h1 className="text-3xl font-bold mb-4">{blog.data.name}</h1>
       <div className="flex items-center justify-center w-full mb-10 mt-10">
-        <ImageComponent imageName={blog.data.thumbnailImage} />
+        <ImageComponent
+          imageName={blog.data.thumbnailImage}
+          height={400}
+          width={400}
+        />
       </div>
       <div className="flex justify-between items-center">
         <p className="text-gray-600 mb-2">By {blog.data.author || "Unknown"}</p>

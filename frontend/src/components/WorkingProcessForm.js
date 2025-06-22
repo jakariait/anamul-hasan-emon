@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuthAdminStore from "@/store/AuthAdminStore";
 
+
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/pagecontent`;
+
 const WorkingProcessForm = () => {
-  const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/pagecontent`;
 
   const { token } = useAuthAdminStore();
 
