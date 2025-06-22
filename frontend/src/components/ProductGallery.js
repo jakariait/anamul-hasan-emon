@@ -66,6 +66,7 @@ const ProductGallery = ({ images, zoom = true }) => {
                 className="bg-white p-2 cursor-pointer"
                 onClick={() => changeImage("prev")}
                 disabled={activeIndex === 0}
+                aria-label="Go to previous image"
               >
                 <IoIosArrowBack />
               </button>
@@ -73,6 +74,7 @@ const ProductGallery = ({ images, zoom = true }) => {
                 className="bg-white p-2 cursor-pointer"
                 onClick={() => changeImage("next")}
                 disabled={activeIndex === imageUrls.length - 1}
+                aria-label="Go to next image"
               >
                 <IoIosArrowForward />
               </button>
@@ -94,7 +96,10 @@ const ProductGallery = ({ images, zoom = true }) => {
                   className="w-full h-auto object-cover cursor-pointer"
                   skeletonHeight={"400px"}
                 />
-                <button className="absolute md:bottom-4 bottom-1 left-1 p-3 md:left-3 bg-white rounded-full cursor-pointer">
+                <button
+                  className="absolute md:bottom-4 bottom-1 left-1 p-3 md:left-3 bg-white rounded-full cursor-pointer"
+                  aria-label="Open fullscreen view"
+                >
                   <BsArrowsFullscreen />
                 </button>
               </a>
@@ -118,6 +123,7 @@ const ProductGallery = ({ images, zoom = true }) => {
             onClick={() => changeImage("prev")}
             className="text-xl hover:text-gray-500 transition-colors duration-150 cursor-pointer"
             disabled={activeIndex === 0}
+            aria-label="Go to previous image"
           >
             <IoIosArrowBack />
           </button>
@@ -150,6 +156,7 @@ const ProductGallery = ({ images, zoom = true }) => {
             onClick={() => changeImage("next")}
             className="text-xl hover:text-gray-500 transition-colors duration-150 cursor-pointer"
             disabled={activeIndex === imageUrls.length - 1}
+            aria-label="Go to next image"
           >
             <IoIosArrowForward />
           </button>

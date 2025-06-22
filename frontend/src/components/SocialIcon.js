@@ -12,6 +12,8 @@ const SocialLinks = async () => {
         target="_blank"
         rel="noopener noreferrer"
         className="text-[#0A66C2]" // LinkedIn brand color
+        aria-label="LinkedIn profile"
+
       >
         <FaLinkedin />
       </a>
@@ -22,6 +24,8 @@ const SocialLinks = async () => {
         target="_blank"
         rel="noopener noreferrer"
         className="text-[#1877F2]" // Facebook brand color
+        aria-label="Facbeook profile"
+
       >
         <FaFacebookF />
       </a>
@@ -32,6 +36,8 @@ const SocialLinks = async () => {
         target="_blank"
         rel="noopener noreferrer"
         className="text-[#FF0000]" // YouTube brand color
+        aria-label="Youtube profile"
+
       >
         <FaYoutube />
       </a>
@@ -42,6 +48,8 @@ const SocialLinks = async () => {
         target="_blank"
         rel="noopener noreferrer"
         className="text-red-100" // TikTok brand color
+        aria-label="TikTok profile"
+
       >
         <FaTiktok />
       </a>
@@ -51,6 +59,8 @@ const SocialLinks = async () => {
         target="_blank"
         rel="noopener noreferrer"
         className="text-[#E4405F]" // Instagram brand color
+        aria-label="Instagram profile"
+
       >
         <FaInstagram />
       </a>

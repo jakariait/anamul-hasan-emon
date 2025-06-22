@@ -7,7 +7,6 @@ import {
   getName,
   getTitle,
 } from "@/utils/getPageContentData";
-import ImageComponent from "@/components/ImageComponent";
 import NextImageComponent from "@/components/NextImageComponent";
 
 const Hero = async () => {

@@ -54,6 +54,7 @@ const Navbar = () => {
           <button
             className="cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Open menu"
           >
             {menuOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
