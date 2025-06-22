@@ -4,8 +4,14 @@ const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
 async function fetchPageContent() {
   try {
-    const response = await axios.get(`${apiURL}/pagecontent`);
-    return response.data;
+    const response = await fetch(`${apiURL}/pagecontent`, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) throw new Error("Failed to fetch page content");
+
+    const data = await response.json(); // ✅ this is the correct way
+    return data;
   } catch (error) {
     console.error("Failed to fetch page content:", error.message);
     throw error;
