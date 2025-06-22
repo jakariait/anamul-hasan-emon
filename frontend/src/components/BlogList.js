@@ -43,7 +43,7 @@ const BlogList = () => {
     severity: "success",
   });
 
-  const token = useAuthAdminStore();
+  const { token } = useAuthAdminStore(); // ✅ destructure properly
   const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchBlogs = useCallback(
