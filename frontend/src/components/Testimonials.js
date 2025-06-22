@@ -21,7 +21,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <div className="bg-[#1C2124] p-4 pt-10 pb-10 scroll-mt-20">
+    <div className="bg-[#1C2124] p-4 pt-10 pb-10 scroll-mt-20 ">
       <div className="xl:container xl:mx-auto text-center">
         <h2 className="text-xl md:text-2xl font-bold text-[#EF6C00] mb-10">
           What Clients Say:

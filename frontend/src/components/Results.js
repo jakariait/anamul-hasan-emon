@@ -20,7 +20,7 @@ const Results = () => {
 
   return (
     <div>
-      <div className="md:flex justify-center hidden bg-[#09122C]">
+      <div className="md:flex  justify-center hidden bg-[#09122C]">
         <ProductGallery images={images} />
       </div>
       <div className="md:hidden bg-[#09122C]">

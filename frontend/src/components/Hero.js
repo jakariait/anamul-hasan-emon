@@ -66,7 +66,6 @@ const Hero = async () => {
               imageName={heroImage}
               alt={name}
               className="w-full"
-              height={500}
             />
           </div>
         </div>

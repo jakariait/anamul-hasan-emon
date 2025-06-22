@@ -50,12 +50,12 @@ const ProductGallery = ({ images, zoom = true }) => {
   if (imageUrls.length === 0) return <p>Loading images...</p>;
 
   return (
-    <div className="flex flex-col items-center xl:container xl:mx-auto ">
+    <div className="flex flex-col items-center xl:container xl:mx-auto  ">
       <h2 className="text-xl md:text-2xl font-bold text-[#EF6C00] m-5">
         My Recent Work:
       </h2>
 
-      <div className="relative md:w-2/3 p-2 md:p-3">
+      <div className="relative md:w-2/3 p-2 md:p-3  ">
         <div className="absolute bottom-1 right-1 md:bottom-4 flex md:right-4 z-10 gap-1 justify-center items-center">
           {imageUrls.length > 1 && (
             <div className="flex items-center gap-1">
@@ -93,8 +93,6 @@ const ProductGallery = ({ images, zoom = true }) => {
                   alt="Main Image"
                   className="w-full h-auto object-cover cursor-pointer"
                   skeletonHeight={"400px"}
-                  height={600}
-                  width={600}
                 />
                 <button className="absolute md:bottom-4 bottom-1 left-1 p-3 md:left-3 bg-white rounded-full cursor-pointer">
                   <BsArrowsFullscreen />
@@ -125,7 +123,7 @@ const ProductGallery = ({ images, zoom = true }) => {
           </button>
 
           <div className="p-2 flex items-center justify-center-safe gap-4 overflow-x-auto w-full md:w-[calc(40rem)] scrollbar-hide">
-            <div className="flex gap-4 overflow-hidden scrollbar-hide">
+            <div className="flex gap-4 overflow-hidden scrollbar-hide ">
               {imageUrls.map((imgUrl, index) => (
                 <div
                   key={index}
@@ -142,7 +140,6 @@ const ProductGallery = ({ images, zoom = true }) => {
                     alt={`Thumbnail ${index}`}
                     className="w-full h-full object-cover"
                     skeletonHeight={"200px"}
-                    height={200}
                   />
                 </div>
               ))}
