@@ -1,6 +1,6 @@
 import React from "react";
 import SocialIcon from "@/components/SocialIcon";
-import {  getWhatsApp } from "@/utils/brand";
+import { getWhatsApp } from "@/utils/brand";
 import {
   getHeroContent,
   getHeroImage,
@@ -8,6 +8,7 @@ import {
   getTitle,
 } from "@/utils/getPageContentData";
 import ImageComponent from "@/components/ImageComponent";
+import NextImageComponent from "@/components/NextImageComponent";
 
 const Hero = async () => {
   const listItems = await getHeroContent();
@@ -33,8 +34,13 @@ const Hero = async () => {
         >
           <div className="text-white p-4 flex-1 flex flex-col justify-center gap-10">
             <div>
-              <div className={"lg:hidden pt-5 pb-5"}>
-                <ImageComponent imageName={heroImage} alt={name} />
+              <div className={"lg:hidden pt-5 pb-5 flex items-center justify-center"}>
+                <NextImageComponent
+                  imageName={heroImage}
+                  altName={name}
+                  height={400}
+                  width={350}
+                />
               </div>
 
               <ul className="mt-6 space-y-4 text-gray-300 list-disc pl-6">
@@ -62,10 +68,11 @@ const Hero = async () => {
             </div>
           </div>
           <div className="hidden lg:block">
-            <ImageComponent
+            <NextImageComponent
               imageName={heroImage}
-              alt={name}
-              className="w-full"
+              altName={name}
+              height={500}
+              width={500}
             />
           </div>
         </div>
