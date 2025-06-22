@@ -3,7 +3,7 @@ const apiURL = process.env.NEXT_PUBLIC_API_URL;
 async function fetchPageContent() {
   try {
     const response = await fetch(`${apiURL}/pagecontent`, {
-      cache: "no-store",
+      next: { revalidate: 60 }, // Revalidate cache every 60 seconds
     });
 
     if (!response.ok) throw new Error("Failed to fetch page content");
